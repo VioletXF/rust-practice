@@ -1,4 +1,4 @@
-use std::io;
+use std::{io, error::Error};
 use rand::Rng;
 use std::cmp::Ordering;
 fn main() {
@@ -8,12 +8,20 @@ fn main() {
         println!("Please input your guess.");
 
         let mut guess = String::new();
+        let a: Result<(), u128> = Ok(());
         
         io::stdin().read_line(&mut guess)
             .expect("Failed to read line");
         let guess: u32 = match guess.trim().parse() { 
             Ok(num) => num,
-            Err(_) => continue,
+            Err(e) => match e.kind() {
+                std::num::IntErrorKind::Empty => todo!(),
+                std::num::IntErrorKind::InvalidDigit => todo!(),
+                std::num::IntErrorKind::PosOverflow => todo!(),
+                std::num::IntErrorKind::NegOverflow => todo!(),
+                std::num::IntErrorKind::Zero => todo!(),
+                _ => todo!(),
+            },
         };
         println!("You guessed: {}", guess);
 

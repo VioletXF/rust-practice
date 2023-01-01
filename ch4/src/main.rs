@@ -1,14 +1,9 @@
-use std::mem::take;
 
-
+#![allow(unused)]
 fn main() {
-    let s = String::from("asdf");
+let a = [1, 2, 3, 4, 5];
 
-    takes_ownership(s);
-    println!("{}", s);
+let slice = &a[1..3];
 
-}
-
-fn takes_ownership(s: String){
-
+assert_eq!(slice, &[2, 3]);
 }
